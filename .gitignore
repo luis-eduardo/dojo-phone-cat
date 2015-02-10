@@ -1,5 +1,4 @@
 .idea
-.idea/*
 js/lib/dbind/*
 js/lib/dgrid/*
 js/lib/dijit/*

@@ -1,2 +1,3 @@
 # dojo-phone-cat
-Dojo version of the Angularjs PhoneCat Tutorial
+Dojo version of the AngularJS PhoneCat Tutorial
+

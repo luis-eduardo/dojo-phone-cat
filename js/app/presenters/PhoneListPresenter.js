@@ -8,17 +8,28 @@ define([
 	var PhoneListPresenter = declare([Evented ], {
         self: this,
 
-        queryObj: {},
+        queryObj: new RegExp(""),
 
         sortObj: {},
 
 		getAll: function() {
-            var result = model.phoneList.filter(this.queryObj).sort(this.sortObj);
+
+            var filterName = model.phoneList.Filter()
+                .match("name", this.queryObj);
+
+            var filterSnippet = model.phoneList.Filter()
+                .match("snippet", this.queryObj);
+
+            var result = model.phoneList
+                .filter(filterName.or(filterSnippet))
+                .sort(this.sortObj);
+
             return result.fetch();
 		},
 
         setQuery: function(query) {
-            this.queryObj = { name : new RegExp(query, "i") };
+            this.queryObj = new RegExp(query, "i");
+            //this.queryObj = { name : regexp, snippet: regexp };
             this.emit("productsUpdate");
         },
 

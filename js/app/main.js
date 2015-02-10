@@ -32,7 +32,7 @@ define([
         parser.parse();
 
         bind(registry.byId("query")).to(mainScope, "query");
-        bind(registry.byId("sort")).to(mainScope, "sort");
+        bind(dom.byId("sort")).to(mainScope, "sort");
 
         mainScope.set("sort", "age");
     };
