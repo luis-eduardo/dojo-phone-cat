@@ -18,7 +18,7 @@ define([
                 var url = "#/phones/" + this.phone.id;
 
 				this.name.innerHTML = this.phone.name;
-                this.thumbLink.href = url;
+                this.name.href = url;
 				this.snippet.innerHTML = this.phone.snippet;
 
                 this.thumbLink.href = url;

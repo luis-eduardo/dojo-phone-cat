@@ -42,26 +42,7 @@
 
 <body class="claro">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                <!--Sidebar content-->
-                Search:
-                <input id="query" name="query" type="text"
-                       data-dojo-type="dijit/form/TextBox"
-                       data-dojo-props="intermediateChanges: true">
-                Sort by:
-                <select id="sort" name="sort">
-                    <option value="name">Alphabetical</option>
-                    <option value="age">Newest</option>
-                </select>
-            </div>
-
-            <div id="viewContainer" class="col-md-10">
-
-            </div>
-        </div>
-    </div>
+    <div id="viewContainer"></div>
 
 	<script type="text/javascript">
         require(["app/main"], function(AppCtrl) {

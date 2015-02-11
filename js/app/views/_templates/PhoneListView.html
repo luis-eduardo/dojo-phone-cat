@@ -1,3 +1,22 @@
-<div id="product-list-view">
-    <ul data-dojo-attach-point="itemsContainer" class="phones"></ul>
+<div id="product-list-view" class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <!--Sidebar content-->
+            Search:
+            <input id="query" name="query" type="text"
+                   data-dojo-type="dijit/form/TextBox"
+                   data-dojo-props="intermediateChanges: true">
+            Sort by:
+            <select id="sort" name="sort">
+                <option value="name">Alphabetical</option>
+                <option value="age">Newest</option>
+            </select>
+        </div>
+
+        <div class="col-md-10">
+            <ul data-dojo-attach-point="itemsContainer" class="phones"></ul>
+        </div>
+    </div>
 </div>
+
+

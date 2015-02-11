@@ -2,30 +2,50 @@
 
 define([
 	"dojo/_base/declare",
-	"dijit/_WidgetBase",
+    "dojo/dom",
+    "dojo/Stateful",
+    "dojo/ready",
+    "dojo/parser",
+    "dijit/_WidgetBase",
 	"dijit/_TemplatedMixin",
-	"../presenters/PhoneListPresenter",
+	"dijit/_WidgetsInTemplateMixin",
+    "dijit/registry",
+    "../presenters/PhoneListPresenter",
 	"./widgets/PhoneRow",
-	"dojo/text!./_templates/PhoneListView.html"
+    'dbind/bind',
+    "dojo/text!./_templates/PhoneListView.html"
 ], function(declare,
-	_WidgetBase,
+	dom,
+    Stateful,
+    ready,
+    parser,
+    _WidgetBase,
 	_TemplatedMixin,
-	presenter,
+    _WidgetsInTemplateMixin,
+    registry,
+    presenter,
     PhoneRow,
-	template){
+    bind,
+    template){
 
-	var PhoneListView = declare([_WidgetBase, _TemplatedMixin], {
+	var PhoneListView = declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin  ], {
 		templateString: template,
 
 		phoneRows: null,
 
-        mainScope: {},
+        mainScope: null,
 
 		postCreate: function() {
 			var self = this;
 			this.phoneRows = [];
+            this.mainScope = new Stateful({});
 
-			this.updateProductData();
+            bind(registry.byId("query")).to(this.mainScope, "query");
+            bind(dom.byId("sort")).to(this.mainScope, "sort");
+
+            this.mainScope.set("sort", "age");
+
+            this.updateProductData();
 
 			presenter.on("productsUpdate", function() {
 				self.updateProductData();

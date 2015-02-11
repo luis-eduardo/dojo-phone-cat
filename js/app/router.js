@@ -21,11 +21,14 @@ define([
 			if(view == v) {
                 currentView = view;
 				v.domNode.style.display = "";
-				if(v.show) {
+                if(v.show) {
 					v.show(e);
 				}
 			} else {
 				v.domNode.style.display = "none";
+                if(v.hide){
+                    v.hide();
+                }
 			}
 		}
 	}
@@ -35,7 +38,10 @@ define([
     }
 
 	function startup () {
-		router.startup("/");
+		router.startup("/phones");
+        if(!location.hash){
+            router.go("/phones");
+        }
 	}
 
 	return {

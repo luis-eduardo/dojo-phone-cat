@@ -2,39 +2,28 @@
 
 define([
 	"dojo/dom",
-    "dojo/Stateful",
-    'dbind/bind',
-	"./views/PhoneListView",
+    "./views/PhoneListView",
+    "./views/PhoneDetailsView",
 	"./router",
-    "dojo/parser",
-    "dijit/registry",
     "dijit/form/TextBox",
-    "dijit/form/Select",
     "dojo/domReady!"
-], function (dom, Stateful, bind, PhoneListView, router, parser, registry) {
+], function (dom, PhoneListView, PhoneDetailsView, router) {
 	var parentNode = dom.byId("viewContainer");
-
-    var mainScope = new Stateful({});
 
     var startup = function(){
         registerRoutes();
-        initUI();
         router.startup();
     };
 
     var registerRoutes = function() {
-        var phoneListView = new PhoneListView({ mainScope: mainScope },
+        var phoneListView = new PhoneListView(null,
             createAndAppendDiv(parentNode));
-        router.registerView("/", phoneListView);
-    };
+        router.registerView("/phones", phoneListView);
 
-    var initUI = function(){
-        parser.parse();
+        var phoneDetailsView = new PhoneDetailsView(null,
+            createAndAppendDiv(parentNode));
+        router.registerView("/phones/:id", phoneDetailsView);
 
-        bind(registry.byId("query")).to(mainScope, "query");
-        bind(dom.byId("sort")).to(mainScope, "sort");
-
-        mainScope.set("sort", "age");
     };
 
     function createAndAppendDiv(parent){
