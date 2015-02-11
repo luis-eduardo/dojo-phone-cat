@@ -46,6 +46,9 @@ body {
     width: 100px;
     padding: 1em;
 }
+.phone-details-view ul.phone-thumbs img:hover {
+ cursor: pointer;
+}
 .phone-details-view ul.specs {
     clear: both;
     margin: 0;
