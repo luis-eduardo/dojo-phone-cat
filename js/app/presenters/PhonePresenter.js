@@ -2,11 +2,11 @@
 
 define([
     "dojo/_base/declare",
-    "dojo/request"
-], function (declare, request) {
+    "../models/PhoneModel"
+], function (declare, model) {
     var PhonePresenter = declare([], {
         getById: function(id) {
-            return request("phones/" + id + ".json", { handleAs: "json" });
+            return model.phoneStore.get(id + ".json");
         }
     });
 
