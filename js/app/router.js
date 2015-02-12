@@ -1,8 +1,9 @@
 'use strict';
 
 define([
-    "dojo/router"
-], function (router) {
+    "dojo/router",
+    "dojo/_base/fx"
+], function (router, fx) {
     var views = {};
     var currentView = {};
 
@@ -20,12 +21,25 @@ define([
 
             if (view == v) {
                 currentView = view;
-                v.domNode.style.display = "";
+                fx.fadeIn({
+                    node: v.domNode,
+                    onEnd: function(){
+                        console.log("end", this.node);
+                        this.node.style.display = "";
+                    }
+                }).play();
+
                 if (v.show) {
                     v.show(e);
                 }
             } else {
-                v.domNode.style.display = "none";
+                fx.fadeOut({
+                    node: v.domNode,
+                    onEnd: function(){
+                        this.node.style.display = "none";
+                    }
+                }).play();
+
                 if (v.clear) {
                     v.clear();
                 }

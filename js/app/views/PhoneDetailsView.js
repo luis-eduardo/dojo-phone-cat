@@ -91,7 +91,7 @@ define([
 
     function bindDimensions(self, phone) {
         phone.sizeAndWeight.dimensions.forEach(function (dim) {
-            domConstruct.place("<dd>" + dim + "</dd>", self.phoneDimensions, "after");
+            domConstruct.place("<dd>" + dim + "</dd>", self.phoneDimensions);
         });
         bind(dom.byId("phone-sizeAndWeight-weight")).to(phone.sizeAndWeight, "weight");
     }

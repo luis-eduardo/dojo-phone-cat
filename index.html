@@ -21,7 +21,7 @@
     <![endif]-->
 
     <script type="text/javascript">
-        var contextRoot = "/phonecat/";
+        var contextRoot = location.pathname.replace(/\/[^/]*$/, '') + "/";
         var dojoConfig = {
             async: true,
             packages: [
