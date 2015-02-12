@@ -7,7 +7,8 @@ define([], function () {
     }
 
     function join() {
-        return Array.slice(arguments).join(', ');
+        var args = Array.prototype.slice.call(arguments);
+        return args.join(', ');
     }
 
     function checkmark(val){

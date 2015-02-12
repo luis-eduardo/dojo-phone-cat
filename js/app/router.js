@@ -26,8 +26,8 @@ define([
 				}
 			} else {
 				v.domNode.style.display = "none";
-                if(v.hide){
-                    v.hide();
+                if(v.clear){
+                    v.clear();
                 }
 			}
 		}

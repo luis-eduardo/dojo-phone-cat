@@ -4,9 +4,19 @@ body {
     padding-top: 20px;
 }
 
+.phone-images {
+    background-color: white;
+    width: 450px;
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+
 .phones {
     list-style: none;
 }
+
 .thumb {
     float: left;
     margin: -0.5em 1em 1.5em 0;
@@ -14,6 +24,7 @@ body {
     height: 100px;
     width: 100px;
 }
+
 .phones li {
     clear: both;
     height: 115px;
@@ -23,13 +34,16 @@ body {
 /** Detail View **/
 .phone-details-view img.phone {
     float: left;
-    border: 1px solid black;
     margin-right: 3em;
     margin-bottom: 2em;
     background-color: white;
     padding: 2em;
     height: 400px;
     width: 400px;
+    display: none;
+}
+.phone-details-view img.phone:first-child {
+    display: block;
 }
 .phone-details-view ul.phone-thumbs {
     margin: 0;

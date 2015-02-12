@@ -5,6 +5,7 @@ define([
    "dojo/_base/lang",
     "dojo/dom",
     "dojo/dom-construct",
+    "dojo/dom-class",
     "dojo/query",
     "dojo/on",
     "dijit/_WidgetBase",
@@ -12,12 +13,14 @@ define([
     "../presenters/PhonePresenter",
     "dbind/bind",
     "../utils/dbindExt",
+    "../utils/Animations",
     "dojo/text!./_templates/PhoneDetailsView.html",
     "dojo/NodeList-dom"
 ], function(declare,
     lang,
     dom,
     domConstruct,
+    domClass,
     query,
     on,
     _WidgetBase,
@@ -25,6 +28,7 @@ define([
     presenter,
     bind,
     dbindExt,
+    Animations,
     template){
 
     function bindBasic(phone) {
@@ -38,13 +42,17 @@ define([
     }
 
     function bindImages(self, phone) {
+
         phone.images.forEach(function(image){
+            domConstruct.place("<img class='phone' src='" + image + "'>", self.phoneMainImg);
             domConstruct.place("<li><img src='" + image + "'></li>", self.phoneThumbs);
         });
 
         query(".phone-thumbs img").on("click", function(){
             self.setImage(this);
         });
+
+        self.set("mainImageUrl", phone.images[0]);
     }
 
     function bindAvailability(self, phone) {
@@ -129,17 +137,18 @@ define([
         mainImageUrl: "",
 
         //attach-points declarations
+        phoneMainImg: null,
         phoneThumbs: null,
         phoneAvailability: null,
         phoneDimensions: null,
 
         show: function(e){
+            this.clear();
+
             var self = this;
             this.phone = presenter.getById(e.params.id);
 
             this.phone.then(function(phone) {
-                self.set("mainImageUrl", phone.images[0]);
-
                 bindBasic(phone);
                 bindImages(self, phone);
                 bindAvailability(self, phone);
@@ -155,9 +164,10 @@ define([
             });
         },
 
-        hide: function() {
+        clear: function() {
             query("img.phone").attr({ src: "" });
 
+            domConstruct.empty(this.phoneMainImg);
             domConstruct.empty(this.phoneThumbs);
             domConstruct.empty(this.phoneAvailability);
             domConstruct.empty(this.phoneDimensions);
@@ -170,8 +180,21 @@ define([
         /* Getters and Setters */
 
         _setMainImageUrlAttr: function(val) {
+            //ignore first time
+            if(this.mainImageUrl != "") {
+                query("img.phone").forEach(function(img){
+                    if(img.src.lastIndexOf(val) >= 0 && !domClass.contains(img, "active")) {
+                        Animations.addClass(img, "active");
+                        domClass.add(img, "active");
+                    } else if(img.src.lastIndexOf(val) < 0 && domClass.contains(img, "active")) {
+                        Animations.removeClass(img, "active");
+                        domClass.remove(img, "active");
+                    }
+                });
+            } else {
+                domClass.add(query("img.phone")[0], "active");
+            }
             this.mainImageUrl = val;
-            query("img.phone").attr({ src: this.mainImageUrl });
         }
     });
 
