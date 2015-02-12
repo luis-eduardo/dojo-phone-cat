@@ -10,7 +10,7 @@ define([
     var TrackableRequestMemory = declare([RequestMemory, Store, Trackable]);
 
     var phoneList = new TrackableRequestMemory(
-        { target: 'phones/phones.json' }
+        {target: 'phones/phones.json'}
     );
 
     return {

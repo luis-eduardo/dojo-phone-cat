@@ -6,12 +6,12 @@ define([], function () {
         var map = {};
         var C = [];
 
-        for(var i = B.length - 1; i >= 0; i--) {
+        for (var i = B.length - 1; i >= 0; i--) {
             map[B[i][compProp]] = null;
         }
 
-        for(var i = A.length - 1; i >= 0; i--) {
-            if(!map.hasOwnProperty(A[i][[compProp]])) {
+        for (var i = A.length - 1; i >= 0; i--) {
+            if (!map.hasOwnProperty(A[i][[compProp]])) {
                 C.push(A[i]);
             }
         }
@@ -23,13 +23,13 @@ define([], function () {
         var map = {};
         var C = [];
 
-        for(var i = B.length - 1; i >= 0; i--) {
+        for (var i = B.length - 1; i >= 0; i--) {
             map[B[i][compProp]] = null;
             C.push(B[i]);
         }
 
-        for(var i = A.length - 1; i >= 0; i--) {
-            if(!map.hasOwnProperty(A[i][[compProp]])) {
+        for (var i = A.length - 1; i >= 0; i--) {
+            if (!map.hasOwnProperty(A[i][[compProp]])) {
                 C.push(A[i]);
             }
         }

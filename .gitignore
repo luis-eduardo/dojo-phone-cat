@@ -1,10 +1,5 @@
 .idea
-js/lib/dbind/*
-js/lib/dgrid/*
 js/lib/dijit/*
 js/lib/dojo/*
 js/lib/dojox/*
-js/lib/dstore/*
-js/lib/put-selector/*
 js/lib/util/*
-js/lib/xstyle/*

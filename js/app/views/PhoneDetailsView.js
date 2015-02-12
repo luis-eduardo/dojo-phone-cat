@@ -2,7 +2,7 @@
 
 define([
     "dojo/_base/declare",
-   "dojo/_base/lang",
+    "dojo/_base/lang",
     "dojo/dom",
     "dojo/dom-construct",
     "dojo/dom-class",
@@ -16,20 +16,20 @@ define([
     "../utils/Animations",
     "dojo/text!./_templates/PhoneDetailsView.html",
     "dojo/NodeList-dom"
-], function(declare,
-    lang,
-    dom,
-    domConstruct,
-    domClass,
-    query,
-    on,
-    _WidgetBase,
-    _TemplatedMixin,
-    presenter,
-    bind,
-    dbindExt,
-    Animations,
-    template){
+], function (declare,
+             lang,
+             dom,
+             domConstruct,
+             domClass,
+             query,
+             on,
+             _WidgetBase,
+             _TemplatedMixin,
+             presenter,
+             bind,
+             dbindExt,
+             Animations,
+             template) {
 
     function bindBasic(phone) {
         query(".phone-name").forEach(function (item) {
@@ -43,12 +43,12 @@ define([
 
     function bindImages(self, phone) {
 
-        phone.images.forEach(function(image){
+        phone.images.forEach(function (image) {
             domConstruct.place("<img class='phone' src='" + image + "'>", self.phoneMainImg);
             domConstruct.place("<li><img src='" + image + "'></li>", self.phoneThumbs);
         });
 
-        query(".phone-thumbs img").on("click", function(){
+        query(".phone-thumbs img").on("click", function () {
             self.setImage(this);
         });
 
@@ -100,7 +100,7 @@ define([
         bind(dom.byId("phone-display-screenSize")).to(phone.display, "screenSize");
         bind(dom.byId("phone-display-screenResolution")).to(phone.display, "screenResolution");
         bind(dom.byId("phone-display-touchScreen")).to(
-            bind(dbindExt.boolToString).to(phone.display, "touchScreen")
+            bind(dbindExt.checkmark).to(phone.display, "touchScreen")
         );
     }
 
@@ -109,10 +109,10 @@ define([
         bind(dom.byId("phone-hardware-usb")).to(phone.hardware, "usb");
         bind(dom.byId("phone-hardware-audioJack")).to(phone.hardware, "audioJack");
         bind(dom.byId("phone-hardware-fmRadio")).to(
-            bind(dbindExt.boolToString).to(phone.hardware, "fmRadio")
+            bind(dbindExt.checkmark).to(phone.hardware, "fmRadio")
         );
         bind(dom.byId("phone-hardware-accelerometer")).to(
-            bind(dbindExt.boolToString).to(phone.hardware, "accelerometer")
+            bind(dbindExt.checkmark).to(phone.hardware, "accelerometer")
         );
     }
 
@@ -142,13 +142,13 @@ define([
         phoneAvailability: null,
         phoneDimensions: null,
 
-        show: function(e){
+        show: function (e) {
             this.clear();
 
             var self = this;
             this.phone = presenter.getById(e.params.id);
 
-            this.phone.then(function(phone) {
+            this.phone.then(function (phone) {
                 bindBasic(phone);
                 bindImages(self, phone);
                 bindAvailability(self, phone);
@@ -164,8 +164,8 @@ define([
             });
         },
 
-        clear: function() {
-            query("img.phone").attr({ src: "" });
+        clear: function () {
+            query("img.phone").attr({src: ""});
 
             domConstruct.empty(this.phoneMainImg);
             domConstruct.empty(this.phoneThumbs);
@@ -173,20 +173,20 @@ define([
             domConstruct.empty(this.phoneDimensions);
         },
 
-        setImage: function(img){
+        setImage: function (img) {
             this.set("mainImageUrl", img.src);
         },
 
         /* Getters and Setters */
 
-        _setMainImageUrlAttr: function(val) {
+        _setMainImageUrlAttr: function (val) {
             //ignore first time
-            if(this.mainImageUrl != "") {
-                query("img.phone").forEach(function(img){
-                    if(img.src.lastIndexOf(val) >= 0 && !domClass.contains(img, "active")) {
+            if (this.mainImageUrl != "") {
+                query("img.phone").forEach(function (img) {
+                    if (img.src.lastIndexOf(val) >= 0 && !domClass.contains(img, "active")) {
                         Animations.addClass(img, "active");
                         domClass.add(img, "active");
-                    } else if(img.src.lastIndexOf(val) < 0 && domClass.contains(img, "active")) {
+                    } else if (img.src.lastIndexOf(val) < 0 && domClass.contains(img, "active")) {
                         Animations.removeClass(img, "active");
                         domClass.remove(img, "active");
                     }

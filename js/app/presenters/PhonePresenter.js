@@ -5,7 +5,7 @@ define([
     "../models/PhoneModel"
 ], function (declare, model) {
     var PhonePresenter = declare([], {
-        getById: function(id) {
+        getById: function (id) {
             return model.phoneStore.get(id + ".json");
         }
     });

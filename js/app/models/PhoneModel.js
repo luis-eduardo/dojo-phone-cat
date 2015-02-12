@@ -10,7 +10,7 @@ define([
     var TrackableRestStore = declare([Rest, Store, Trackable]);
 
     var phoneStore = new TrackableRestStore(
-        { target: 'phones/' }
+        {target: 'phones/'}
     );
 
     return {

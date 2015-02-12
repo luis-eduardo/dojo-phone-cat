@@ -11,7 +11,7 @@ define([], function () {
         return args.join(', ');
     }
 
-    function checkmark(val){
+    function checkmark(val) {
         return val ? '\u2713' : '\u2718';
     }
 

@@ -42,45 +42,55 @@ body {
     width: 400px;
     display: none;
 }
+
 .phone-details-view img.phone:first-child {
     display: block;
 }
+
 .phone-details-view ul.phone-thumbs {
     margin: 0;
     list-style: none;
 }
+
 .phone-details-view ul.phone-thumbs li {
     border: 1px solid black;
     display: inline-block;
     margin: 1em;
     background-color: white;
 }
+
 .phone-details-view ul.phone-thumbs img {
     height: 100px;
     width: 100px;
     padding: 1em;
 }
+
 .phone-details-view ul.phone-thumbs img:hover {
- cursor: pointer;
+    cursor: pointer;
 }
+
 .phone-details-view ul.specs {
     clear: both;
     margin: 0;
     padding: 0;
     list-style: none;
 }
-.phone-details-view ul.specs > li{
+
+.phone-details-view ul.specs > li {
     display: inline-block;
     width: 200px;
     vertical-align: top;
 }
-.phone-details-view ul.specs > li > span{
+
+.phone-details-view ul.specs > li > span {
     font-weight: bold;
     font-size: 1.2em;
 }
+
 .phone-details-view ul.specs dt {
     font-weight: bold;
 }
+
 .phone-details-view h1 {
     border-bottom: 1px solid gray;
 }

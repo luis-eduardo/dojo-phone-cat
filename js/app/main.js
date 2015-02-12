@@ -1,21 +1,21 @@
 'use strict';
 
 define([
-	"dojo/dom",
+    "dojo/dom",
     "./views/PhoneListView",
     "./views/PhoneDetailsView",
-	"./router",
+    "./router",
     "dijit/form/TextBox",
     "dojo/domReady!"
 ], function (dom, PhoneListView, PhoneDetailsView, router) {
-	var parentNode = dom.byId("viewContainer");
+    var parentNode = dom.byId("viewContainer");
 
-    var startup = function(){
+    var startup = function () {
         registerRoutes();
         router.startup();
     };
 
-    var registerRoutes = function() {
+    var registerRoutes = function () {
         var phoneListView = new PhoneListView(null,
             createAndAppendDiv(parentNode));
         router.registerView("/phones", phoneListView);
@@ -26,14 +26,14 @@ define([
 
     };
 
-    function createAndAppendDiv(parent){
-		var div = document.createElement("div");
-		parent.appendChild(div);
-		return div;
-	}
+    function createAndAppendDiv(parent) {
+        var div = document.createElement("div");
+        parent.appendChild(div);
+        return div;
+    }
 
     return {
-        init: function() {
+        init: function () {
             startup();
         }
     };

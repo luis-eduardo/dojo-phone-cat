@@ -1,18 +1,18 @@
 'use strict';
 
 define([
-	"dojo/_base/declare",
-	"dojo/Evented",
-	"../models/PhoneListModel"
+    "dojo/_base/declare",
+    "dojo/Evented",
+    "../models/PhoneListModel"
 ], function (declare, Evented, model) {
-	var PhoneListPresenter = declare([Evented ], {
+    var PhoneListPresenter = declare([Evented], {
         self: this,
 
         queryObj: new RegExp(""),
 
         sortObj: {},
 
-		getAll: function() {
+        getAll: function () {
 
             var filterName = model.phoneList.Filter()
                 .match("name", this.queryObj);
@@ -25,25 +25,25 @@ define([
                 .sort(this.sortObj);
 
             return result.fetch();
-		},
+        },
 
-        setQuery: function(query) {
+        setQuery: function (query) {
             this.queryObj = new RegExp(query, "i");
             //this.queryObj = { name : regexp, snippet: regexp };
             this.emit("productsUpdate");
         },
 
-        setSort: function(sort) {
+        setSort: function (sort) {
             this.sortObj = sort;
             this.emit("productsUpdate");
         }
-	});
+    });
 
-	var phoneListPresenter = new PhoneListPresenter;
+    var phoneListPresenter = new PhoneListPresenter;
 
-	model.phoneList.track().on('add, update, delete', function () {
-		phoneListPresenter.emit("productsUpdate");
-	});
+    model.phoneList.track().on('add, update, delete', function () {
+        phoneListPresenter.emit("productsUpdate");
+    });
 
-	return phoneListPresenter;
+    return phoneListPresenter;
 });
